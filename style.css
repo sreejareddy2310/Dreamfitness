@@ -1,0 +1,499 @@
+/* =========================================================
+   GLOBAL BASE STYLES
+   ========================================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root{
+  --header-h: 64px;
+  --glass: rgba(255,255,255,.08);
+  --border: rgba(255,255,255,.15);
+  --accent: #ff2b2b;
+}
+
+html, body { height: 100%; }
+
+body {
+  font-family: 'Questrial', sans-serif;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Push main content below fixed header */
+.main-content { padding-top: var(--header-h); }
+
+
+
+/* =========================================================
+   HEADER — GLASS EFFECT NAVIGATION
+   ========================================================= */
+.menu-bar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  min-height: var(--header-h);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,.3);
+  z-index: 10000; /* 🔥 Highest so links ALWAYS work */
+}
+
+.branding { display: flex; align-items: center; gap: 10px; }
+.logo-icon { width: 40px; height: 40px; object-fit: contain; }
+.site-title { color: white; font-size: 20px; font-weight: 700; text-decoration: none; }
+
+.menu-items {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 16px;
+}
+.menu-items a {
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.menu-items a:hover {
+  background-color: rgba(255,255,255,.08);
+}
+
+.login-btn, .signup-btn {
+  padding: 8px 14px;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.menu-toggle{
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 10px;
+  color: white;
+}
+
+
+
+/* =========================================================
+   HERO SECTION — 3D ROTATING POSTER WHEEL
+   ========================================================= */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background: url('fitness-bg.jpg') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 0;
+}
+
+/* VIEWPORT FOR 3D EFFECT */
+.wheel-viewport {
+  width: 100%;
+  max-width: 420px;
+  height: 380px;
+  perspective: 1400px;
+  position: relative;
+  z-index: 10;
+  pointer-events: none; /* 🔥 prevents blocking nav links */
+}
+
+.wheel {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform-style: preserve-3d;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.wheel-item {
+  width: 180px;
+  height: 260px;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform-style: preserve-3d;
+  transition: transform .8s ease, opacity .3s ease;
+}
+
+.wheel-item-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 0 20px rgba(255,0,0,0.35),
+    0 0 45px rgba(255,0,0,0.2);
+  transition: transform .8s ease, box-shadow .3s ease;
+}
+
+.wheel-item-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* FRONT CARD HIGHLIGHT */
+.wheel-item.front .wheel-item-inner {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 30px rgba(255,0,0,0.85),
+    0 0 60px rgba(255,0,0,0.4);
+}
+/* Prevent last posters from touching */
+.wheel-item {
+  transform-style: preserve-3d;
+  transition: transform .8s ease, opacity .3s ease;
+  margin: 0 6px; /* extra separation */
+}
+
+
+
+/* =========================================================
+   HERO QUOTE
+   ========================================================= */
+.hero-quote {
+  margin-top: 24px;
+  text-align: center;
+  z-index: 20;
+}
+
+.hero-quote p {
+  font-size: clamp(1.2rem, 3.5vw, 2rem);
+  margin-bottom: 1rem;
+}
+
+.view-price-btn {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+
+/* =========================================================
+   PROGRAMS
+   ========================================================= */
+.programs-section {
+  background: #000;
+  color: #fff;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.programs-section h2 {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.program-carousel {
+  white-space: nowrap;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-behavior: smooth;
+}
+
+.program-carousel::-webkit-scrollbar { display: none; }
+
+.program-track {
+  display: inline-flex;
+  gap: 20px;
+  padding-left: 1rem;
+}
+
+.program img {
+  width: clamp(160px, 40vw, 240px);
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(255,0,0,.25);
+}
+
+
+/* =========================================================
+   PRICING (from second code)
+   ========================================================= */
+.pricing-section {
+  background: #000;
+  color: white;
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.pricing-section h2{
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  margin-bottom: 2rem;
+  color: var(--accent);
+}
+
+.pricing-container {
+  display: grid;
+  gap: 2rem;
+  width: min(1100px, 92%);
+  margin-inline: auto;
+  grid-template-columns: repeat(3,1fr);
+}
+@media(max-width:900px){
+  .pricing-container { grid-template-columns: 1fr; }
+}
+
+.pricing-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.15);
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 0 25px rgba(255,0,0,.25);
+  transition: .25s ease;
+}
+
+.pricing-card.highlight{
+  border: 1px solid var(--accent);
+  box-shadow: 0 0 25px rgba(255,0,0,.6);
+}
+
+.pricing-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 0 35px rgba(255,0,0,.45);
+}
+
+.pricing-card h3{
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.pricing-card .price{
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.pricing-card ul{
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.3rem;
+}
+
+.pricing-card ul li{
+  margin: 8px 0;
+  color: #ddd;
+}
+
+.price-btn{
+  padding: 10px 20px;
+  background-color: var(--accent);
+  border: none;
+  color: white;
+  font-weight: 800;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   CONTACT SECTION (from second code)
+   ========================================================= */
+.contact-section {
+  background:#000;
+  padding: 5rem 1.5rem;
+  text-align:center;
+  color:#fff;
+  position:relative;
+}
+.contact-section h2 {
+  margin-top: -20px;   /* move up */
+  margin-bottom: 30px; /* spacing below */
+  font-size: clamp(1.5rem, 6vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 2.5rem;
+  color: var(--accent);
+}
+
+.contact-container {
+  width:min(1100px,92%);
+  margin-inline:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2rem;
+}
+@media(max-width:900px){
+  .contact-container { grid-template-columns:1fr; }
+}
+
+.contact-form,
+.contact-info {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.15);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(255,0,0,.25);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width:100%;
+  padding:12px 15px;
+  margin-bottom:1.1rem;
+  border:none;
+  border-radius:10px;
+  background:rgba(255,255,255,.08);
+  color:#fff;
+}
+
+.send-btn{
+  background:var(--accent);
+  color:#fff;
+  font-weight:800;
+  border:none;
+  border-radius:10px;
+  padding:12px 24px;
+  cursor:pointer;
+  width:100%;
+}
+
+.contact-info h3{
+  color:var(--accent);
+  margin-bottom:1rem;
+}
+
+.contact-info p{
+  color:#ccc;
+}
+
+.contact-socials{
+  position:absolute;
+  bottom:24px;
+  right:24px;
+  display:flex;
+  gap:18px;
+  z-index:50;
+}
+
+.contact-socials i{
+  font-size:1.6rem;
+  color:var(--accent);
+}
+
+@media(max-width:700px){
+  .contact-socials {
+    position:static;
+    justify-content:center;
+    margin-top:20px;
+  }
+}
+
+/* =========================================================
+   MODALS (from second code)
+   ========================================================= */
+body.glassy-active::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(10px);
+  z-index:9999;
+}
+
+.modal {
+  position:fixed;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  background:rgba(0,0,0,.75);
+  padding:24px;
+  border-radius:14px;
+  width:min(420px,92vw);
+  z-index:10000;
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 0 25px rgba(255,0,0,.25);
+}
+
+.modal h3 {
+  text-align:center;
+  margin-bottom:16px;
+  color:#fff;
+}
+
+.modal input {
+  width:100%;
+  padding:12px;
+  margin:8px 0 14px;
+  border:none;
+  border-radius:8px;
+  background:rgba(255,255,255,.08);
+  color:white;
+}
+
+
+/* =========================================================
+   MOBILE NAV
+   ========================================================= */
+@media(max-width:768px){
+
+  .menu-toggle{ display:grid; }
+
+  .menu-items{
+    display:none;
+    position:absolute;
+    top:100%; left:0;
+    width:100%;
+    padding:14px;
+    background:rgba(0,0,0,.92);
+    flex-direction:column;
+    gap:10px;
+    z-index:9000;
+  }
+
+  .menu-items.active{ display:flex; }
+}
+
+
+
+/* =========================================================
+   RESPONSIVE FIXES
+   ========================================================= */
+@media(max-width:480px){
+  .wheel-item{
+    width:150px;
+    height:220px;
+  }
+}
+
+/* Hide hamburger by default */
+#menu-toggle {
+  display: none;
+}
+
+/* Show only on mobile */
+@media (max-width: 768px) {
+  #menu-toggle {
+    display: grid;
+  }
+}

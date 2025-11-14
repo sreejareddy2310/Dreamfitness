@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Dream Fitness</title>
+
+  <link rel="icon" href="muscular.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- ===========================================
+        NAVIGATION
+  ============================================ -->
+  <header class="site-header">
+    <nav class="menu-bar" aria-label="Primary">
+      <div class="branding">
+        <img src="muscular.png" alt="Dream Fitness logo" class="logo-icon" />
+        <a class="site-title" href="#top" data-nav>Dream Fitness</a>
+      </div>
+
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false"
+              aria-controls="primary-nav" aria-label="Toggle menu">&#9776;</button>
+
+      <ul class="menu-items" id="primary-nav" role="menubar">
+        <li><a href="#top" data-nav>Home</a></li>
+        <li><a href="#programs" data-nav>Programs</a></li>
+        <li><a href="#pricing" data-nav>Pricing</a></li>
+        <li><a href="#contact" data-nav>Contact</a></li>
+
+        <li class="private-links" style="display:none;">
+          <a href="#settingsSection" data-nav>Settings</a>
+        </li>
+
+        <li class="auth-buttons">
+          <button type="button" class="login-btn">Login</button>
+          <button type="button" class="signup-btn">Signup</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <main id="top" class="main-content" role="main">
+
+    <!-- ===========================================
+          LOGIN MODAL
+    ============================================ -->
+    <div class="login-form modal" id="loginForm" hidden>
+      <form id="loginFormElement" novalidate>
+        <h3>Login</h3>
+
+        <label for="username">Username</label>
+        <input type="text" id="username" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" required />
+
+        <div class="form-row-right">
+          <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="login-btn">Submit</button>
+      </form>
+    </div>
+
+
+    <!-- ===========================================
+          SIGNUP MODAL
+    ============================================ -->
+    <div class="signup-form modal" id="signupForm" hidden>
+      <form id="signupFormElement" novalidate>
+        <h3>Signup</h3>
+
+        <label for="email">Email / Phone</label>
+        <input type="text" id="email" required />
+
+        <label for="newPassword">Create Password</label>
+        <input type="password" id="newPassword" required />
+
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" required />
+
+        <button type="submit" class="signup-btn">Register</button>
+      </form>
+    </div>
+
+
+    <!-- ===========================================
+          HERO — 3D POSTER WHEEL
+    ============================================ -->
+    <section class="hero-section" aria-label="Featured Programs">
+
+      <div class="wheel-viewport">
+        <div class="wheel" id="wheel">
+
+          <div class="wheel-item"><div class="wheel-item-inner"><img src="poster1.jpg" alt=""></div></div>
+          <div class="wheel-item"><div class="wheel-item-inner"><img src="poster2.jpg" alt=""></div></div>
+          <div class="wheel-item"><div class="wheel-item-inner"><img src="poster3.jpg" alt=""></div></div>
+          <div class="wheel-item"><div class="wheel-item-inner"><img src="poster4.jpg" alt=""></div></div>
+          <div class="wheel-item"><div class="wheel-item-inner"><img src="poster5.jpg" alt=""></div></div>
+
+        </div>
+      </div>
+
+      <div class="hero-quote">
+        <p>"Push harder than yesterday if you want a different tomorrow."</p>
+        <button type="button" class="view-price-btn">View Pricing</button>
+      </div>
+
+    </section>
+
+
+    <!-- ===========================================
+          PROGRAMS
+    ============================================ -->
+    <section class="programs-section" id="programs">
+      <h2>Our Programs</h2>
+
+      <div class="program-carousel" tabindex="0">
+        <div class="program-track">
+          <div class="program"><img src="strength-training-poster.png" alt=""></div>
+          <div class="program"><img src="yoga-program-poster.png" alt=""></div>
+          <div class="program"><img src="zumba-program-poster.png" alt=""></div>
+          <div class="program"><img src="hiit-program-poster.png" alt=""></div>
+          <div class="program"><img src="personal-training-poster.png" alt=""></div>
+          <div class="program"><img src="diet-plans-poster.png" alt=""></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===========================================
+          PRICING
+    ============================================ -->
+    <section class="pricing-section" id="pricing">
+      <h2>Pricing Plans</h2>
+
+      <div class="pricing-container">
+        <article class="pricing-card">
+          <h3>Basic Plan</h3>
+          <p class="price">₹499 / month</p>
+          <ul>
+            <li>Access to Gym</li>
+            <li>1 Assessment</li>
+            <li>Locker Access</li>
+          </ul>
+          <button class="price-btn">Join Now</button>
+        </article>
+
+        <article class="pricing-card highlight">
+          <h3>Pro Plan</h3>
+          <p class="price">₹999 / month</p>
+          <ul>
+            <li>All Basic Features</li>
+            <li>Personal Trainer</li>
+            <li>Yoga & Zumba Classes</li>
+          </ul>
+          <button class="price-btn">Join Now</button>
+        </article>
+
+        <article class="pricing-card">
+          <h3>Elite Plan</h3>
+          <p class="price">₹1499 / month</p>
+          <ul>
+            <li>All Pro Features</li>
+            <li>Custom Diet Plan</li>
+            <li>Exclusive Events</li>
+          </ul>
+          <button class="price-btn">Join Now</button>
+        </article>
+      </div>
+    </section>
+
+
+    <!-- ===========================================
+          CONTACT
+    ============================================ -->
+    <section id="contact" class="contact-section">
+      <h2>Contact Us</h2>
+
+      <div class="contact-container">
+
+        <form class="contact-form" novalidate>
+          <input type="text" id="name" placeholder="Full Name" required />
+          <input type="email" id="email2" placeholder="Email" required />
+          <textarea id="message" rows="4" placeholder="Your Message..." required></textarea>
+          <button type="submit" class="send-btn">Send Message</button>
+        </form>
+
+        <div class="contact-info">
+          <h3>Reach Us</h3>
+          <p><strong>Email:</strong> dreamfitness@gmail.com</p>
+          <p><strong>Phone:</strong> +91 98765 43210</p>
+          <p><strong>Address:</strong> Hyderabad, India</p>
+        </div>
+
+        <!-- SOCIAL ICONS -->
+        <div class="contact-socials">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===========================================
+          SETTINGS
+    ============================================ -->
+    <section id="settingsSection" class="panel" hidden>
+      <div class="settings-form">
+        <h3>Account Settings</h3>
+
+        <button class="toggle-btn login-btn" data-target="updateContactForm">Update Email / Phone</button>
+        <form id="updateContactForm" hidden>
+          <input type="text" placeholder="New Email / Phone" />
+          <button class="login-btn">Update</button>
+        </form>
+
+        <hr />
+
+        <button class="toggle-btn login-btn" data-target="changePasswordForm">Change Password</button>
+        <form id="changePasswordForm" hidden>
+          <input type="password" placeholder="Current Password" />
+          <input type="password" placeholder="New Password" />
+          <input type="password" placeholder="Confirm Password" />
+          <button class="login-btn">Change</button>
+        </form>
+
+        <hr />
+
+        <button class="toggle-btn signup-btn" data-target="deleteAccount" style="background:red;">
+          Delete Account
+        </button>
+        <div id="deleteAccount" hidden>
+          <p>Are you sure you want to delete your account?</p>
+          <button class="signup-btn" onclick="confirmDelete()" style="background:red;">
+            Confirm Delete
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
